@@ -9,6 +9,7 @@ environment:
 dependencies:
   http: any
   shelf: any
+  pointycastle: any
 
 dev_dependencies:
   pedantic: ^1.10.0

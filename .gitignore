@@ -8,3 +8,6 @@ build/
 # Omit committing pubspec.lock for library packages; see
 # https://dart.dev/guides/libraries/private-files#pubspeclock.
 pubspec.lock
+
+# We sometimes use real tokens in local tests, which shouldn't be committed
+test/data/example_token.dart
