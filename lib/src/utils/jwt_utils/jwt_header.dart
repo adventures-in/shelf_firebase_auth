@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:shelf_firebase_auth/src/jwt_utils/public_keys.dart';
+import 'package:shelf_firebase_auth/src/utils/jwt_utils/public_keys.dart';
 
 class JwtHeader {
   JwtHeader(this.alg, this.kid);

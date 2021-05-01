@@ -1,4 +1,4 @@
-import 'package:shelf_firebase_auth/src/jwt_utils/jwt.dart';
+import 'package:shelf_firebase_auth/src/utils/jwt_utils/jwt.dart';
 
 bool validateAuthHeader(String? authHeader) {
   if (authHeader == null) throw 'No auth header';
