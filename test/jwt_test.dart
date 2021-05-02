@@ -3,20 +3,20 @@ import 'package:test/test.dart';
 
 import 'data/example_token.dart';
 
+/// I have been testing with a valid token from another project (id  = the-process-tool)
+/// If a test fails due to an old token, just run the_process and copy the token into
+/// test/data/example_token.dart
 void main() {
   group('JWT', () {
-    test('header validates correctly', () {
-      final jwt = Jwt(token);
-      jwt.header.validate();
+    test('header validation works on a valid token', () async {
+      await Jwt(token).header.validate();
     });
 
-    test('payload validates correctly', () {
-      final jwt = Jwt(token);
-      expect(true, isTrue);
+    test('payload validation works on a valid token', () {
+      Jwt(token).payload.validate('the-process-tool');
     });
-    test('signature verifies correctly', () {
-      final jwt = Jwt(token);
-      expect(true, isTrue);
+    test('signature verification works on a valid token', () {
+      Jwt(token).signature.verify();
     });
   });
 }

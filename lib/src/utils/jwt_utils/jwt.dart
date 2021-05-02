@@ -14,10 +14,10 @@ class Jwt {
 
     header = JwtHeader.fromJson(_decodeFromBase64(splitToken[0]));
     payload = JwtPayload.fromJson(_decodeFromBase64(splitToken[1]));
-    signature = JwtSignature(splitToken[2]);
+    signature = JwtSignature(splitToken[0] + splitToken[1], splitToken[2]);
   }
 
-  final tokenString;
+  final String tokenString;
 
   late final JwtHeader header;
   late final JwtPayload payload;
