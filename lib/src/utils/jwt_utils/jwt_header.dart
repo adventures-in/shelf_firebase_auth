@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
-
 class JwtHeader {
   JwtHeader(this.alg, this.kid);
 
@@ -10,17 +6,15 @@ class JwtHeader {
 
   // Verify id token following rules in:
   // https://firebase.google.com/docs/auth/admin/verify-id-tokens#verify_id_tokens_using_a_third-party_jwt_library
-  Future<void> validate() async {
+  //
+  // If valid, return the public key.
+  bool validate(Map<String, String> publicKeys) {
     // Algorithm "RS256"
     if (alg != 'RS256') throw 'Algorithm must be RS256';
 
-    // Check the kid againt the public keys - we may want to use the value of
-    // max-age in the Cache-Control header to know when to refresh the public keys
-    final response = await Client().get(Uri.parse(
-        'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com'));
-    final Map<String, dynamic> publicKeysMap = jsonDecode(response.body);
+    if (!publicKeys.containsKey(kid)) throw 'KeyId not in allowed list';
 
-    if (!publicKeysMap.keys.contains(kid)) throw 'KeyId not in allowed list';
+    return true;
   }
 
   static JwtHeader fromJson(Map<String, dynamic> json) =>

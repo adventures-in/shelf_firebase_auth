@@ -18,7 +18,7 @@ class JwtPayload {
 
   // Check token components and throws if anything is invalid.
   //  + 5 minutes for clock skew ?
-  void validate(String projectId) {
+  bool validate(String projectId) {
     final currentDate = DateTime.now();
 
     // If the current date is after the expiration date, token is expired
@@ -43,6 +43,8 @@ class JwtPayload {
     if (currentDate.isBefore(authenticationTime)) {
       throw 'User authenticated in the future.';
     }
+
+    return true;
   }
 
   String get projectId => aud;
