@@ -23,21 +23,7 @@ class Jwt {
   late final JwtPayload payload;
   late final JwtSignature signature;
 
-  bool validate(String projectId) {
-    // Check that the header has the expected values.
-    header.validate();
-
-    // Check that the payload has the expected values.
-    payload.validate(projectId);
-
-    return true;
-  }
-
-  bool verify() {
-    signature.verify();
-
-    return true;
-  }
+  bool verify() => signature.verify();
 
   Map<String, dynamic> _decodeFromBase64(String base64String) =>
       jsonDecode(utf8.decode(base64.decode(base64.normalize(base64String))));
